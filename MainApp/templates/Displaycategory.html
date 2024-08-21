@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Category Table</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Category Name</th>
+                          <th>Category Image</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                         <td>{{i.CategoryName}}</td>
+                            <td>
+                                <img src="{{i.CategoryImage.url}}">
+                            </td>
+                            <td>
+                                <form action="{% url 'editcategory' editid=i.id %}">
+                                <button type="submit" class="btn btn-primary me-2">Edit</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{% url 'deletecategory' deleid=i.id %}">
+                                <button type="submit" class="btn btn-primary me-2">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}
